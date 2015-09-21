@@ -2,76 +2,65 @@ package employeefile;
 
 /**
  *
- * @author Your Name Here
+ * @author Dylan Lozo and Kyle Zindell
  */
-public class Employee {
+public class UserIpAddress {
 
-    private int empId;
-    private String lastName;
-    private String firstName;
-    private String homePhone;
-    private double salary;
+    private int userId;
+    private String ipAddress;
+    private String dateAdded;
+    private int numRequest;
 
     public Employee() {
-        empId = 0;
-        lastName = "";
-        firstName = "";
-        homePhone = "";
-        salary = 0;
+        userId = 0;
+        ipAddress = "";
+        dateAdded = "";
+        numRequest = 0;
     }
 
-    public Employee(int empId, String lastName, String firstName, String homePhone, double salary) {
-        this.empId = empId;
-        this.lastName = lastName;
-        this.firstName = firstName;
-        this.homePhone = homePhone;
-        this.salary = salary;
+    public UserIpAddress(int userId, String ipAddress, String dateAdded, int numRequest) {
+        this.userId = userId;
+        this.ipAddress = ipAddress;
+        this.dateAdded = dateAdded;
+        this.numRequest = numRequest;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getdateAdded() {
+        return dateAdded;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setdateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
     }
 
-    public int getEmpId() {
-        return empId;
+    public int getuserId() {
+        return userId;
     }
 
-    public void setEmpId(int empId) {
-        this.empId = empId;
+    public void setuserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getipAddress() {
+        return ipAddress;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setipAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
     }
 
-    public String getHomePhone() {
-        return homePhone;
+    public int getnumRequest() {
+        return numRequest;
     }
 
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setnumRequest(int numRequest) {
+        this.numRequest = numRequest;
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "empId=" + empId + ", lastName=" + lastName 
-                + ", firstName=" + firstName + ", homePhone=" + homePhone 
-                + ", salary=" + salary + '}';
+        return "Employee{" + "userId=" + userId + ", ipAddress=" + ipAddress 
+                + ", dateAdded=" + dateAdded  
+                + ", numRequest=" + numRequest + '}';
     }
 }
