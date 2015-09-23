@@ -1,4 +1,4 @@
-package employeefile;
+package ipTrackerfile;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author Your Name Here
+ * @author Dylan Lozo and Kyle Zindell
  */
 public class EmployeeDAO {
 
@@ -37,27 +37,26 @@ public class EmployeeDAO {
         readList();
     }
 
-    public void createRecord(Employee employee) {
-        myList.add(employee);
+    public void createRecord(Employee ipTracker) {
+        myList.add(ipTracker);
         writeList();
     }
 
     public Employee retrieveRecord(int id) {
-        for (Employee employee : myList) {
-            if (employee.getEmpId() == id) {
-                return employee;
+        for (Employee ipTracker : myList) {
+            if (ipTracker.getUserId() == id) {
+                return ipTracker;
             }
         }
         return null;
     }
 
-    public void updateRecord(Employee updatedEmployee) {
-        for (Employee employee : myList) {
-            if (employee.getEmpId() == updatedEmployee.getEmpId()) {
-                employee.setLastName(updatedEmployee.getLastName());
-                employee.setFirstName(updatedEmployee.getFirstName());
-                employee.setHomePhone(updatedEmployee.getHomePhone());
-                employee.setSalary(updatedEmployee.getSalary());
+    public void updateRecord(Employee updatedIpTracker) {
+        for (Employee ipTracker : myList) {
+            if (ipTracker.getUserId() == updatedIpTracker.getUserId()) {
+                ipTracker.setIpAddress(updatedEmployee.getIpAddress());
+                ipTracker.setDateAdded(updatedEmployee.getDateAdded());
+                ipTracker.setNumRequest(updatedEmployee.getNumRequest());
                 break;
             }
         }
@@ -65,17 +64,17 @@ public class EmployeeDAO {
     }
 
     public void deleteRecord(int id) {
-        for (Employee employee : myList) {
-            if (employee.getEmpId() == id) {
-                myList.remove(employee);
+        for (Employee ipTracker : myList) {
+            if (ipTracker.getEmpId() == id) {
+                myList.remove(ipTracker);
                 break;
             }
         }
         writeList();
     }
 
-    public void deleteRecord(Employee employee) {
-        myList.remove(employee);
+    public void deleteRecord(Employee ipTracker) {
+        myList.remove(ipTracker);
         writeList();
     }
 
@@ -86,12 +85,11 @@ public class EmployeeDAO {
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 int id = Integer.parseInt(data[0]);
-                String last = data[1];
-                String first = data[2];
-                String homePhone = data[3];
-                double salary = Double.parseDouble(data[4]);
-                Employee employee = new Employee(id, last, first, homePhone, salary);
-                myList.add(employee);
+                String ipAddress = data[1];
+                String dateAdded = data[2];
+                int numRequest = Integer.parseInt(data[3]);
+                Employee ipTracker = new Employee(id, ipAddress, dateAdded, numRequest);
+                myList.add(ipTracker);
             }
         } catch (IOException ioe) {
             System.out.println("Read file error with " + ioe.getMessage());
@@ -101,13 +99,12 @@ public class EmployeeDAO {
     protected void writeList() {
         Path path = Paths.get(fileName);
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardCharsets.UTF_8)) {
-            for (Employee employee : myList) {
-                writer.write(String.format("%d,%s,%s,%s,%.2f\n",
-                        employee.getEmpId(),
-                        employee.getLastName(),
-                        employee.getFirstName(),
-                        employee.getHomePhone(),
-                        employee.getSalary()));
+            for (Employee ipTracker : myList) {
+                writer.write(String.format("%d,%s,%s,%d\n",
+                        ipTracker.getUserId(),
+                        ipTracker.getIpAddress(),
+                        ipTracker.getDateAdded(),
+                        ipTracker.getNumRequest()));
             }
         } catch (IOException ioe) {
             System.out.println("Write file error with " + ioe.getMessage());
@@ -118,10 +115,10 @@ public class EmployeeDAO {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        myList.stream().forEach((employee) -> {
-            sb.append(String.format("%5d : %s, %s, %s, %.2f\n", employee.getEmpId(),
-                    employee.getLastName(), employee.getFirstName(),
-                    employee.getHomePhone(), employee.getSalary()));
+        myList.stream().forEach((ipTracker) -> {
+            sb.append(String.format("%5d : %s, %s, %5d \n", ipTracker.getUserId(),
+                    ipTracker.getIpAddress(), 
+                    ipTracker.getDateAdded(), ipTracker.getNumRequest()));
         });
 
         return sb.toString();
