@@ -36,24 +36,23 @@ public class EmployeeApp {
                 case "2":
                     id = Validator.getInt(sc, "New User ID: ");
                     ipAddress = Validator.getLine(sc, "Ip Address: ");
-                    homePhone = Validator.getLine(sc, "Home phone number: ");
-                    salary = Validator.getDouble(sc, "Yearly salary: ");
-                    ipList.createRecord(new Employee(id, last, first, homePhone, salary));
+                    dateAdded = Validator.getLine(sc, "Date Added: ");
+                    numRequest = Validator.getInt(sc, "Number of Requests: ");
+                    ipList.createRecord(new Employee(id, ipAddress, dateAdded, numRequest));
                     break;
                 case "3":
-                    id = Validator.getInt(sc, "Employee id to retrieve: ");
+                    id = Validator.getInt(sc, "User ID to retrieve: ");
                     System.out.println(ipList.retrieveRecord(id));
                     break;
                 case "4":
-                    id = Validator.getInt(sc, "Employee ID to update: ");
-                    last = Validator.getLine(sc, "Last name: ");
-                    first = Validator.getLine(sc, "First name: ");
-                    homePhone = Validator.getLine(sc, "Home phone number: ");
-                    salary = Validator.getDouble(sc, "Yearly salary: ");
-                    ipList.updateRecord(new Employee(id, last, first, homePhone, salary));
+                    id = Validator.getInt(sc, "User ID to update: ");
+                    ipAddress = Validator.getLine(sc, "Ip Address: ");
+                    dateAdded = Validator.getLine(sc, "Date Added: ");
+                    numRequests = Validator.getInt(sc, "Number of Requests: ");
+                    ipList.updateRecord(new Employee(id, ipAddress, dateAdded, numRequests));
                     break;
                 case "5":
-                    id = Validator.getInt(sc, "Employee ID to delete: ");
+                    id = Validator.getInt(sc, "User ID to delete: ");
                     System.out.println(ipList.retrieveRecord(id));
                     String ok = Validator.getLine(sc, "Deleter this record? (y/n) ", "^[yYnN]$");
                     if (ok.equalsIgnoreCase("Y")) {
